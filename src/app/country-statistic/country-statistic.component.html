@@ -1,0 +1,118 @@
+<section class="container-fluid">
+    <section class="container">
+        <select class="form-select form-select-lg mb-3 mt-5" aria-label=".form-select-lg example" (change)="selectCountry($event)">
+            <option selected>ქვეყნების ჩამონათვალი</option>
+            <option *ngFor="let item of allCountryStatistic" value="{{item.name}}">{{item.name}}</option>
+        </select>
+        <div class="row country-detail-box" *ngIf="specificCountriesStatistic">
+            <h2 class="fs-3 mb-5 mt-3">{{specificCountriesStatistic.name}}</h2>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">მოსახლეობა</span>
+                    <span>{{specificCountriesStatistic.population}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">მონაცემების განახლების ბოლო თარიღი</span>
+                    <span>{{specificCountriesStatistic.updated_at}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">სიკვდილიანობის პროცენტი</span>
+                    <span>{{specificCountriesStatistic.latest_data.calculated.death_rate}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">გამოჯანმრთელების პროცენტი</span>
+                    <span>{{specificCountriesStatistic.latest_data.calculated.recovery_rate}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">შემთხვევების პროცენტული მაჩვენებელი მილიონ მოსახლეზე</span>
+                    <span>{{specificCountriesStatistic.latest_data.calculated.cases_per_million_population}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">ჯამური შემთხვევების რაოდენობა</span>
+                    <span>{{specificCountriesStatistic.latest_data.confirmed}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">მიმდინარე თარიღის შემთხვევების რაოდენობა</span>
+                    <span>{{specificCountriesStatistic.today.confirmed}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">ჯამური გარდაცვალებების რაოდენობა</span>
+                    <span>{{specificCountriesStatistic.latest_data.deaths}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">მიმდინარე თარიღის გარდაცვალებების რაოდენობა</span>
+                    <span>{{specificCountriesStatistic.today.deaths}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">ჯამური გამოჯანმრთელების რაოდენობა</span>
+                    <span>{{specificCountriesStatistic.latest_data.recovered}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-3 mb-5 bg-warning">
+                    <i class="fas fa-hospital"></i>
+                    <span class="item-title">მიმდინარე თარიღის გამოჯანმრთელების რაოდენობა</span>
+                    <span>{{specificCountriesStatistic.today.confirmed - specificCountriesStatistic.today.deaths}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    
+
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" (click)="changePeriod('lastMonths')">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          სრული პერიოდის სტატისტიკა
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked (click)="changePeriod('fullPeriod')">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          ბოლო სამი თვის სტატისტიკა
+                        </label>
+                      </div>
+
+
+
+                    <div echarts [options]="chartOption"></div>
+                </div>
+                <div class="col-md-6">
+                   <div echarts [options]="option"></div> 
+                </div>
+                
+            </div>
+            
+            
+        </div>
+        
+    </section>
+</section>

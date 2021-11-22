@@ -1,0 +1,66 @@
+<section class="container-fluid">
+    <section class="container">
+        <div class="row" *ngIf="genericCurrentInfo">
+           <h1 class="fs-3 mb-5 mt-3">ჯამური სტატისტიკა</h1>
+            <div class="col">
+                <div class="item card text-center p-5 mb-5 bg-warning text-white">
+                    <i class="fas fa-hospital"></i>
+                    <span>შემთხვევების რაოდენობა</span>
+                    <span>{{genericCurrentInfo.confirmed}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-5 mb-5 bg-danger text-white">
+                    <i class="fas fa-hospital"></i>
+                    <span>გარდაცვალებების რაოდენობა</span>
+                    <span>{{genericCurrentInfo.deaths}}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="item card text-center p-5 mb-5 bg-success text-white">
+                    <i class="fas fa-hospital"></i>
+                    <span>გამოჯანმრთელების რაოდენობა</span>
+                    <span>{{genericCurrentInfo.active}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="genericCurrentInfo">
+            <div class="row">
+                <div class="col">
+                   <h1 class="fs-3 mb-5">მიმდინარე დღის სტატისტიკა</h1> 
+                </div>
+                <div class="col">
+                   <form #changeDateFrom="ngForm" action="" method="post" *ngIf="date">
+                    <input class="float-end" type="date" name="date" value="{{date}}" (change)="changeCurrentStatistic($event)">
+                </form>  
+                </div>
+                
+            </div>
+           
+             <div class="col">
+                 <div class="item card text-center p-5 mb-5 bg-warning text-white">
+                     <i class="fas fa-hospital"></i>
+                     <span>შემთხვევების რაოდენობა</span>
+                     <span>{{genericCurrentInfo.new_confirmed}}</span>
+                 </div>
+             </div>
+             <div class="col">
+                 <div class="item card text-center p-5 mb-5 bg-danger text-white">
+                     <i class="fas fa-hospital"></i>
+                     <span>გარდაცვალებების რაოდენობა</span>
+                     <span>{{genericCurrentInfo.new_deaths}}</span>
+                 </div>
+             </div>
+             <div class="col">
+                 <div class="item card text-center p-5 mb-5 bg-success text-white">
+                     <i class="fas fa-hospital"></i>
+                     <span>გამოჯანმრთელების რაოდენობა</span>
+                     <span>{{genericCurrentInfo.new_confirmed - genericCurrentInfo.new_deaths}}</span>
+                 </div>
+             </div>
+         </div>
+       
+    </section>
+</section>
+
+<div echarts [options]="chartOption"></div>
