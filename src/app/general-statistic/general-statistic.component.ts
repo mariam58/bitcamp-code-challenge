@@ -38,36 +38,60 @@ export class GeneralStatisticComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGeneralStatistic();
-    this.date = this.currentDate.getFullYear() + '-' + (this.currentDate.getMonth()+1) + '-' + this.currentDate.getDate();
-    console.log(this.date)
+    // this.date = this.currentDate.getFullYear() + '-' + (this.currentDate.getMonth()+1) + '-' + this.currentDate.getDate();
+    this.getCurrentDate();
+  }
+
+
+  getCurrentDate(){
+    let dd = this.currentDate.getDate();
+    let mm = this.currentDate.getMonth()+1;
+    let yyyy = this.currentDate.getFullYear();
+    if(dd<10){
+      dd = 0+dd
+    }
+    if(mm<10){
+      mm = 0+mm
+    }
+    this.date = yyyy + '-' + mm + '-' + dd;
   }
 
   getGeneralStatistic(){
     this.generalStatistic.getGlobalTimeline().subscribe(res=>{
       
       this.genericCurrentInfo=res.data[0];
-      this.genericInfo = [...res.data];
-      console.log(this.genericInfo);
+      // this.genericInfo = [...res.data];
+      this.genericInfo = res.data.reverse();
       for (let i = 0; i < this.genericInfo.length; i++) {
         
         this.totalDeath.push(this.genericInfo[i].deaths)
         this.totalConfirmed.push(this.genericInfo[i].confirmed)
         this.totalRecovered.push(this.genericInfo[i].recovered)
         this.dateList.push(this.genericInfo[i].date)
-        // console.log(this.totalDeath)
+      
       }
-      this.dateList.reverse();
-      this.totalDeath.reverse();
-      this.totalConfirmed.reverse();
-      this.totalRecovered.reverse();
+        console.log(this.totalRecovered)
     })
   }
 
   changeCurrentStatistic(event: any){
-    let currentDate = event.target.value;
-    this.changedCurrentStatisticIndex = this.dateList.findIndex(index=>index === currentDate);
+    // let currentDate = event.target.value;
+    // console.log(this.currentDate)
+
+    // this.changedCurrentStatisticIndex = this.dateList.findIndex(index=>index == currentDate);
+  
+    // this.genericCurrentInfo = this.genericInfo[this.changedCurrentStatisticIndex];
+    //   console.log(this.genericCurrentInfo)
+
+
+
+    // this.date = event.target.value;
+    console.log(event.target.value)
+
+    this.changedCurrentStatisticIndex = this.dateList.findIndex(index=>index ==event.target.value);
+  
     this.genericCurrentInfo = this.genericInfo[this.changedCurrentStatisticIndex];
-    
+      console.log(this.genericCurrentInfo)
   }
 
 
@@ -125,5 +149,5 @@ export class GeneralStatisticComponent implements OnInit {
       }
     ]
   };
- 
+
 }

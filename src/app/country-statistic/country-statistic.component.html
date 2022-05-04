@@ -91,13 +91,13 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" (click)="changePeriod('lastMonths')">
                         <label class="form-check-label" for="flexRadioDefault1">
-                          სრული პერიოდის სტატისტიკა
+                          ბოლო სამი თვის სტატისტიკა
                         </label>
                       </div>
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked (click)="changePeriod('fullPeriod')">
                         <label class="form-check-label" for="flexRadioDefault2">
-                          ბოლო სამი თვის სტატისტიკა
+                          სრული პერიოდის სტატისტიკა
                         </label>
                       </div>
 
@@ -106,7 +106,9 @@
                     <div echarts [options]="chartOption"></div>
                 </div>
                 <div class="col-md-6">
+                    <p>მიმდინარე დღის სტატისტიკა</p>
                    <div echarts [options]="option"></div> 
+            
                 </div>
                 
             </div>

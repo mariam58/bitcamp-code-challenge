@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
+    
   ],
   providers: [
     {
